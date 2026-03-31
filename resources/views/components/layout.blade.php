@@ -45,42 +45,43 @@
                     {{-- DESKTOP LINKS --}}
                     <div class="hidden lg:flex items-center gap-1">
 
-                        <a href="/" {{ route('home') }} font-medium bg-primary text-primary-foreground' : '' }}">
+                        <a href="{{ route('home') }}"
+                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors  {{ request()->routeIs('home') ? 'bg-primary text-primary-foreground' : 'hover:bg-muted' }}">
                             الرئيسية
                         </a>
 
                         <a href="{{ route('news.index') }}"
-                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted {{ request()->routeIs('news.index') ? 'rounded-md text-sm font-medium bg-primary text-primary-foreground' : '' }}">
+                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors  {{ request()->routeIs('news.index') ? 'bg-primary text-primary-foreground' : 'hover:bg-muted' }}">
                             الأخبار
                         </a>
 
                         <a href="{{ route('family-tree.index') }}"
-                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted {{ request()->routeIs('family-tree.index') ? 'rounded-md text-sm font-medium bg-primary text-primary-foreground' : '' }}">
+                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors  {{ request()->routeIs('family-tree.index') ? 'bg-primary text-primary-foreground' : 'hover:bg-muted' }}">
                             شجرة العائلة
                         </a>
 
                         <a href="{{ route('family-history.index') }}"
-                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted {{ request()->routeIs('family-history.index') ? 'rounded-md text-sm font-medium bg-primary text-primary-foreground' : '' }}">
+                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors  {{ request()->routeIs('family-history.index') ? 'bg-primary text-primary-foreground' : 'hover:bg-muted' }}">
                             تاريخ العائلة
                         </a>
 
                         <a href="{{ route('family-council.index') }}"
-                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted {{ request()->routeIs('family-council.index') ? 'rounded-md text-sm font-medium bg-primary text-primary-foreground' : '' }}">
+                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors  {{ request()->routeIs('family-council.index') ? 'bg-primary text-primary-foreground' : 'hover:bg-muted' }}">
                             مجلس العائلة
                         </a>
 
                         <a href="{{ route('professionals.index') }}"
-                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted {{ request()->routeIs('professionals.index') ? 'rounded-md text-sm font-medium bg-primary text-primary-foreground' : '' }}">
+                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors  {{ request()->routeIs('professionals.index') ? 'bg-primary text-primary-foreground' : 'hover:bg-muted' }}">
                             دليل المهنيين
                         </a>
 
                         <a href="{{ route('businesses.index') }}"
-                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted {{ request()->routeIs('businesses.index') ? 'rounded-md text-sm font-medium bg-primary text-primary-foreground' : '' }}">
+                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors  {{ request()->routeIs('businesses.index') ? 'bg-primary text-primary-foreground' : 'hover:bg-muted' }}">
                             الشركات
                         </a>
 
                         <a href="{{ route('gallery.index') }}"
-                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted {{ request()->routeIs('gallery.index') ? 'rounded-md text-sm font-medium bg-primary text-primary-foreground' : '' }}">
+                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors  {{ request()->routeIs('gallery.index') ? 'bg-primary text-primary-foreground' : 'hover:bg-muted' }}">
                             المعرض
                         </a>
 

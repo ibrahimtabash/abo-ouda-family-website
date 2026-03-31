@@ -24,7 +24,8 @@
     {{-- <header class=""> --}}
     <div class="min-h-screen flex flex-col font-cairo" style="font-family: 'IBM Plex Sans Arabic', sans-serif">
         {{-- <nav class="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border"> --}}
-        <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
+        <nav x-data="{ open: false }"
+            class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
 
             <div class="section-container">
 
@@ -101,7 +102,7 @@
                         </a>
 
                         {{-- MOBILE MENU BUTTON (static الآن) --}}
-                        <button class="lg:hidden p-2 rounded-md text-foreground hover:bg-muted">
+                        <button @click="open = !open" class="lg:hidden p-2 rounded-md text-foreground hover:bg-muted">
                             ☰
                         </button>
 
@@ -110,7 +111,7 @@
                 </div>
 
                 {{-- MOBILE MENU (STATIC VERSION - ALWAYS HIDDEN FOR NOW) --}}
-                <div class="lg:hidden pb-4 space-y-1 hidden">
+                {{-- <div @click="open = !open" class="lg:hidden p-2 rounded-md text-foreground hover:bg-muted">
 
                     <a href="/" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-muted">
                         الرئيسية
@@ -150,8 +151,52 @@
                         تسجيل الدخول
                     </a>
 
-                </div>
+                </div> --}}
+                <div x-show="open" x-transition @click.outside="open = false" class="lg:hidden pb-4 space-y-1">
 
+                    <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md text-sm hover:bg-muted">
+                        الرئيسية
+                    </a>
+
+                    <a href="{{ route('news.index') }}" class="block px-3 py-2 rounded-md text-sm hover:bg-muted">
+                        الأخبار
+                    </a>
+
+                    <a href="{{ route('family-tree.index') }}"
+                        class="block px-3 py-2 rounded-md text-sm hover:bg-muted">
+                        شجرة العائلة
+                    </a>
+
+                    <a href="{{ route('family-history.index') }}"
+                        class="block px-3 py-2 rounded-md text-sm hover:bg-muted">
+                        تاريخ العائلة
+                    </a>
+
+                    <a href="{{ route('family-council.index') }}"
+                        class="block px-3 py-2 rounded-md text-sm hover:bg-muted">
+                        مجلس العائلة
+                    </a>
+
+                    <a href="{{ route('professionals.index') }}"
+                        class="block px-3 py-2 rounded-md text-sm hover:bg-muted">
+                        دليل المهنيين
+                    </a>
+
+                    <a href="{{ route('businesses.index') }}"
+                        class="block px-3 py-2 rounded-md text-sm hover:bg-muted">
+                        الشركات
+                    </a>
+
+                    <a href="{{ route('gallery.index') }}" class="block px-3 py-2 rounded-md text-sm hover:bg-muted">
+                        المعرض
+                    </a>
+
+                    <a href="/login"
+                        class="block px-3 py-2 rounded-md text-sm bg-primary text-primary-foreground text-center mt-2">
+                        تسجيل الدخول
+                    </a>
+
+                </div>
             </div>
 
         </nav>

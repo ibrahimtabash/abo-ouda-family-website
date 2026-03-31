@@ -45,43 +45,42 @@
                     {{-- DESKTOP LINKS --}}
                     <div class="hidden lg:flex items-center gap-1">
 
-                        <a href="/"
-                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted">
+                        <a href="/" {{ route('home') }} font-medium bg-primary text-primary-foreground' : '' }}">
                             الرئيسية
                         </a>
 
-                        <a href="/news"
-                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted">
+                        <a href="{{ route('news.index') }}"
+                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted {{ request()->routeIs('news.index') ? 'rounded-md text-sm font-medium bg-primary text-primary-foreground' : '' }}">
                             الأخبار
                         </a>
 
-                        <a href="/family-tree"
-                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted">
+                        <a href="{{ route('family-tree.index') }}"
+                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted {{ request()->routeIs('family-tree.index') ? 'rounded-md text-sm font-medium bg-primary text-primary-foreground' : '' }}">
                             شجرة العائلة
                         </a>
 
-                        <a href="/family-history"
-                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted">
+                        <a href="{{ route('family-history.index') }}"
+                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted {{ request()->routeIs('family-history.index') ? 'rounded-md text-sm font-medium bg-primary text-primary-foreground' : '' }}">
                             تاريخ العائلة
                         </a>
 
-                        <a href="/family-council"
-                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted">
+                        <a href="{{ route('family-council.index') }}"
+                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted {{ request()->routeIs('family-council.index') ? 'rounded-md text-sm font-medium bg-primary text-primary-foreground' : '' }}">
                             مجلس العائلة
                         </a>
 
-                        <a href="/professionals-directory"
-                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted">
+                        <a href="{{ route('professionals.index') }}"
+                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted {{ request()->routeIs('professionals.index') ? 'rounded-md text-sm font-medium bg-primary text-primary-foreground' : '' }}">
                             دليل المهنيين
                         </a>
 
-                        <a href="/businesses"
-                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted">
+                        <a href="{{ route('businesses.index') }}"
+                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted {{ request()->routeIs('businesses.index') ? 'rounded-md text-sm font-medium bg-primary text-primary-foreground' : '' }}">
                             الشركات
                         </a>
 
-                        <a href="/gallery"
-                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted">
+                        <a href="{{ route('gallery.index') }}"
+                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted {{ request()->routeIs('gallery.index') ? 'rounded-md text-sm font-medium bg-primary text-primary-foreground' : '' }}">
                             المعرض
                         </a>
 
@@ -193,9 +192,11 @@
 
                         <div class="space-y-2 text-sm opacity-80">
 
-                            <a href="/news" class="block hover:opacity-100 transition-opacity">الأخبار</a>
+                            <a href="{{ route('news.index') }}"
+                                class="block hover:opacity-100 transition-opacity">الأخبار</a>
 
-                            <a href="/family-tree" class="block hover:opacity-100 transition-opacity">شجرة العائلة</a>
+                            <a href="{{ route('family-tree.index') }}"
+                                class="block hover:opacity-100 transition-opacity">شجرة العائلة</a>
 
                             <a href="/family-council" class="block hover:opacity-100 transition-opacity">مجلس
                                 العائلة</a>

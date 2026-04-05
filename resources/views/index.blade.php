@@ -12,13 +12,13 @@
                 'icon' => 'buildengs',
             ],
             [
-                'label' => 'الأفخاذ',
-                'value' => 32,
+                'label' => 'المهنيين',
+                'value' => 500,
                 'icon' => 'globe',
             ],
             [
-                'label' => 'الإنجازات',
-                'value' => 87,
+                'label' => 'الخريجين',
+                'value' => 430,
                 'icon' => 'graduationCap',
             ],
         ];
@@ -120,7 +120,7 @@
                     <div class="flex gap-4 flex-wrap">
 
                         <a href="/family-tree"
-                            class="px-7 py-3.5 rounded-2xl bg-primary text-white font-semibold hover:scale-105 transition">
+                            class="flex gap-2 px-7 py-3.5 rounded-2xl bg-primary text-white font-semibold hover:scale-105 transition">
                             شجرة العائلة
                         </a>
 
@@ -185,21 +185,28 @@
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                @foreach ($familyNews as $news)
+                @foreach ($newsData as $post)
                     <div class="glass-card overflow-hidden">
 
-                        <img src="{{ $news['image'] }}" class="h-48 w-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac"
+                            class="h-48 w-full object-cover">
 
                         <div class="p-5">
-                            <p class="text-xs text-muted-foreground">
-                                {{ \Carbon\Carbon::parse($news['date'])->format('Y-m-d') }}
+                            <p class="text-xs text-muted-foreground mb-2">
+                                {{ $post->created_at->format('Y/m/d') }}
                             </p>
 
-                            <h3 class="font-bold">{{ $news['title'] }}</h3>
+                            <h3 class="font-bold text-foreground mb-2 line-clamp-2 min-h-[2.5rem]">
+                                {{ $post->title }}
+                            </h3>
 
-                            <p class="text-sm text-muted-foreground">
-                                {{ $news['excerpt'] }}
+                            <p class="text-sm text-muted-foreground line-clamp-3 min-h-[3.5rem]">
+                                {{ Str::words($post->content, 15, '...') }} <a href="{{ route('news.show', $post) }}"
+                                    class="text-primary text-sm font-medium hover:underline">
+                                    قراءة المزيد
+                                </a>
                             </p>
+
                         </div>
 
                     </div>

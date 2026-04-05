@@ -5,7 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+
+    <title>
+        {{ isset($title) ? $title . ' | عائلة أبو عودة' : 'عائلة أبو عودة' }}
+    </title>
+
+    <!-- 🧠 وصف الموقع -->
+    <meta name="description"
+        content="{{ $pageDescription ?? 'الموقع الرسمي لعائلة أبو عودة، يحتوي على أخبار العائلة، شجرة العائلة، الشركات، والمناسبات.' }}">
+    <!-- 🔑 كلمات مفتاحية -->
+    <meta name="keywords" content="عائلة أبو عودة, شجرة العائلة, أخبار العائلة, فلسطين, غزة">
+    <!-- 👤 اسم الكاتب -->
+    <meta name="author" content="عائلة أبو عودة">
+
+    <!-- 📱 Open Graph (لما تشارك الرابط) -->
+    <meta property="og:title" content="عائلة أبو عودة">
+    <meta property="og:description" content="تعرف على أخبار وأنشطة عائلة أبو عودة">
+    <meta property="og:image" content="{{ asset('assets/images/logo.png') }}">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,7 +54,7 @@
                     {{-- LOGO --}}
                     <a href="/" class="flex items-center gap-3">
 
-                        <img src="{{ asset('assets/images/logo.png') }}" alt="عائلة أبو عودة"
+                        <img src="{{ asset('assets/images/logo2.png') }}" alt="عائلة أبو عودة"
                             class="h-20 w-20 object-contain">
 
                         <span class="font-bold text-lg text-foreground hidden sm:block">
@@ -90,16 +110,42 @@
 
                     {{-- RIGHT ACTIONS --}}
                     <div class="flex items-center gap-2">
+                        @guest
+                            <a href="/login"
+                                class="block px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:bg-primary/80">
+                                تسجيل الدخول
+                            </a>
+                        @endguest
+                        @auth
+
+                            <div x-data="{ open: false }" class="relative inline-block mr-10">
+
+                                <button @click="open = !open" class="p-2 rounded-md text-foreground hover:bg-muted">
+                                    <x-icons.user />
+                                </button>
+
+                                <div x-show="open" @click.away="open = false" x-transition
+                                    class="absolute left-0 mt-2 w-48 bg-white border rounded-lg shadow-lg z-50 overflow-hidden">
+                                    <a href="/dashboard" class="block px-4 py-2 text-sm hover:bg-gray-100">
+                                        لوحة التحكم
+                                    </a>
+
+                                    <form action="/logout" method="POST">
+                                        @csrf
+                                        <button type="submit"
+                                            class="w-full text-right px-4 py-2 border-t border-gray-100 text-sm hover:bg-gray-100 text-red-500">
+                                            تسجيل الخروج
+                                        </button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        @endauth
 
                         {{-- DARK MODE (static icon فقط حالياً) --}}
                         <button class="p-2 rounded-md text-foreground hover:bg-muted transition-colors">
                             <x-icons.sun />
                         </button>
-
-                        <a href="/login"
-                            class="hidden sm:inline-flex px-4 py-2 rounded-md text-sm font-medium bg-primary text-primary-foreground hover:opacity-90 transition-opacity">
-                            تسجيل الدخول
-                        </a>
 
                         {{-- MOBILE MENU BUTTON (static الآن) --}}
                         <button @click="open = !open" class="lg:hidden p-2 rounded-md text-foreground hover:bg-muted">
@@ -111,47 +157,7 @@
                 </div>
 
                 {{-- MOBILE MENU (STATIC VERSION - ALWAYS HIDDEN FOR NOW) --}}
-                {{-- <div @click="open = !open" class="lg:hidden p-2 rounded-md text-foreground hover:bg-muted">
 
-                    <a href="/" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-muted">
-                        الرئيسية
-                    </a>
-
-                    <a href="/news" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-muted">
-                        الأخبار
-                    </a>
-
-                    <a href="/family-tree" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-muted">
-                        شجرة العائلة
-                    </a>
-
-                    <a href="/family-history" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-muted">
-                        تاريخ العائلة
-                    </a>
-
-                    <a href="/family-council" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-muted">
-                        مجلس العائلة
-                    </a>
-
-                    <a href="/professionals-directory"
-                        class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-muted">
-                        دليل المهنيين
-                    </a>
-
-                    <a href="/businesses" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-muted">
-                        الشركات
-                    </a>
-
-                    <a href="/gallery" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-muted">
-                        المعرض
-                    </a>
-
-                    <a href="/login"
-                        class="block px-3 py-2 rounded-md text-sm font-medium bg-primary text-primary-foreground text-center mt-2">
-                        تسجيل الدخول
-                    </a>
-
-                </div> --}}
                 <div x-show="open" x-transition @click.outside="open = false" class="lg:hidden pb-4 space-y-1">
 
                     <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md text-sm hover:bg-muted">
@@ -191,10 +197,29 @@
                         المعرض
                     </a>
 
-                    <a href="/login"
-                        class="block px-3 py-2 rounded-md text-sm bg-primary text-primary-foreground text-center mt-2">
-                        تسجيل الدخول
-                    </a>
+                    @guest
+                        <a href="/login"
+                            class="sm:inline-flex px-4 py-2 rounded-md text-sm font-medium bg-primary text-primary-foreground hover:opacity-90 transition-opacity">
+                            تسجيل الدخول
+                        </a>
+                    @endguest
+                    @auth
+                        <div class="flex gap-3 items-center">
+
+                            <a href="/dashboard"
+                                class="sm:inline-flex px-4 py-2 rounded-md text-sm font-medium bg-primary text-primary-foreground hover:opacity-90 transition-opacity">
+                                لوحة التحكم
+                            </a>
+                            {{-- logout --}}
+                            <form action="/logout" method="POST" class="inline">
+                                @csrf
+                                <button type="submit"
+                                    class="sm:inline-flex px-4 py-2 rounded-md text-sm font-medium bg-transparent border hover:bg-muted text-primary hover:opacity-90 transition-opacity">
+                                    تسجيل الخروج
+                                </button>
+                            </form>
+                        </div>
+                    @endauth
 
                 </div>
             </div>

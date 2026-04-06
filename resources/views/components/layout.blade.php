@@ -127,7 +127,8 @@
                                 <div x-show="open" @click.away="open = false" x-transition
                                     class="absolute left-0 mt-2 w-48 bg-white border rounded-lg shadow-lg z-50 overflow-hidden">
                                     @if (auth()->user()->role === 'admin')
-                                        <a href="/dashboard" class="block px-4 py-2 text-sm hover:bg-gray-100">
+                                        <a href="{{ route('admin.dashboard') }}"
+                                            class="block px-4 py-2 text-sm hover:bg-gray-100">
                                             لوحة التحكم
                                         </a>
                                     @endif
@@ -209,7 +210,7 @@
                     @auth
                         <div class="flex gap-3 items-center">
                             @if (auth()->user()->role === 'admin')
-                                <a href="/dashboard"
+                                <a href="{{ route('admin.dashboard') }}"
                                     class="sm:inline-flex px-4 py-2 rounded-md text-sm font-medium bg-primary text-primary-foreground hover:opacity-90 transition-opacity">
                                     لوحة التحكم
                                 </a>

@@ -7,6 +7,7 @@ use App\Http\Controllers\FamilyTreeController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ProfessionalRequestController;
 use App\Http\Controllers\ProfessionalsController;
 use App\Http\Controllers\ProfileController;
 use App\Models\News;
@@ -46,12 +47,17 @@ Route::get('news/{id}', [NewsController::class, 'show'])->name('news.show');
 
 Route::get('professionals-directory', [ProfessionalsController::class, 'index'])->name('professionals.index');
 Route::get('professionals-directory/{id}', [ProfessionalsController::class, 'show'])->name('professionals.show');
-Route::get('professionals-directory/create', [ProfessionalsController::class, 'create'])->name('professionals.create');
 Route::post('professionals-directory', [ProfessionalsController::class, 'store'])->name('professionals.store');
 Route::get('professionals-directory/{id}/edit', [ProfessionalsController::class, 'edit'])->name('professionals.edit');
 Route::put('professionals-directory/{id}', [ProfessionalsController::class, 'update'])->name('professionals.update');
 Route::delete('professionals-directory/{id}', [ProfessionalsController::class, 'destroy'])->name('professionals.destroy');
 
+
+
+Route::get('professional-request/create', [ProfessionalsController::class, 'create'])->name('professional.request.store');
+Route::post('/professional-request', [ProfessionalRequestController::class, 'store'])
+    ->name('professional.request.store')
+    ->middleware('auth');
 
 Route::get('family-tree', [FamilyTreeController::class, 'index'])->name('family-tree.index');
 Route::get('family-history', [FamilyHistoryController::class, 'index'])->name('family-history.index');

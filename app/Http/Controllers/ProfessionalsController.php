@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Profession;
 use App\Models\Professional;
+use App\Models\ProfessionalRequest;
 use Illuminate\Http\Request;
 
 class ProfessionalsController extends Controller
 {
     function index() {
-        $professionals = Professional::latest()->get();
+        $professionals = Professional::where('is_active', true)->latest()->get();
         return view('professionals-directory.index', ['professionals' => $professionals]);
     }
 
@@ -20,12 +21,43 @@ class ProfessionalsController extends Controller
     function create() {
         $professions = Profession::all();
 
-        return view('professional.request.create', compact('professions'));
+        return view('professional-request.create', compact('professions'));
     }
-    function store(Request $request) {
-        dd($request->all());
-        // Handle storing the new professional
-    }
+
+   public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'profession_id' => 'required|exists:professions,id',
+            'phone_number' => 'required|string',
+            'address' => 'nullable|string',
+        ]);
+
+        // ❗ منع طلب مكرر
+        $existing = ProfessionalRequest::where('user_id', auth()->id())
+            ->where('status', 'pending')
+            ->exists();
+
+        if ($existing) {
+            return back()->with('error', 'لديك طلب قيد المراجعة');
+        }
+
+        // ✅ حفظ الطلب
+        ProfessionalRequest::create([
+            'user_id' => auth()->id(),
+            'profession_id' => $validated['profession_id'],
+            'phone_number' => $validated['phone_number'],
+            'address' => $validated['address'],
+        ]);
+
+        // ✅ تحديث user إذا ما عنده رقم
+        if (!auth()->user()->phone_number) {
+            auth()->user()->update([
+                'phone_number' => $validated['phone_number'],
+            ]);
+        }
+
+        return back()->with('success', 'تم إرسال الطلب بنجاح');
+}
     function edit($id) {
         $professional = Professional::findOrFail($id);
         return view('professionals-directory.edit', ['professional' => $professional]);

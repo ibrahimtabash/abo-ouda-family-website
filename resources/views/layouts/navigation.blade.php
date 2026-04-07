@@ -14,9 +14,9 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden sm:-my-px sm:ms-10 sm:flex gap-4">
-                    <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                    <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                         {{ __('لوحة التحكم') }}
-                    </x-nav-link>
+                    </x-responsive-nav-link>
 
                     <x-nav-link :href="route('backoffice.news.index')" :active="request()->routeIs('backoffice.news.index')">
                         {{ __('الأخبار') }}
@@ -25,8 +25,12 @@
                     <x-nav-link :href="route('backoffice.users.index')" :active="request()->routeIs('backoffice.users.index')">
                         {{ __('المستخدمين') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('backoffice.users.index')" :active="request()->routeIs('backoffice.users.index')">
+                    <x-nav-link :href="route('professional-request.index')" :active="request()->routeIs('professional-request.index')">
                         {{ __('دليل المهنيين') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('professions.index')" :active="request()->routeIs('professions.index')">
+                        {{ __('ادارة المهن') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -98,6 +102,25 @@
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+            </div>
+            <!-- Navigation Links -->
+            <div class="flex flex-col gap-4">
+
+
+                <x-responsive-nav-link :href="route('backoffice.news.index')" :active="request()->routeIs('backoffice.news.index')">
+                    {{ __('الأخبار') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('backoffice.users.index')" :active="request()->routeIs('backoffice.users.index')">
+                    {{ __('المستخدمين') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('professional-request.index')" :active="request()->routeIs('professional-request.index')">
+                    {{ __('دليل المهنيين') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('professions.index')" :active="request()->routeIs('professions.index')">
+                    {{ __('ادارة المهن') }}
+                </x-responsive-nav-link>
             </div>
 
             <div class="mt-3 space-y-1">

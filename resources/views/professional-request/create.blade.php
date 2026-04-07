@@ -8,7 +8,7 @@
             @endif
             @if (session('success'))
                 <div class="bg-green-400 text-white p-2 rounded">
-                    {{ session('error') }}
+                    {{ session('success') }}
                 </div>
             @endif
             {{-- TITLE --}}
@@ -22,7 +22,7 @@
 
 
 
-            <form action="{{ route('professional.request.store') }}" method="POST" class="space-y-4">
+            <form action="{{ route('professional-request.store') }}" method="POST" class="space-y-4">
                 @csrf
 
                 {{-- المهنة --}}

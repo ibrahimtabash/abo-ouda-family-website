@@ -15,7 +15,7 @@ class NewsController extends Controller
 
     public function index()
     {
-        $news = News::orderBy('created_at', 'desc')->get();
+        $news = News::with('user')->orderBy('created_at', 'desc')->paginate();
         return view('backoffice.news.index', compact('news'));
     }
     public function pending()

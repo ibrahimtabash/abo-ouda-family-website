@@ -29,6 +29,7 @@
                                     <th class="px-2 py-1">العنوان</th>
                                     <th class="px-2 py-1">المؤلف</th>
                                     <th class="px-2 py-1">تم الإرسال</th>
+                                    <th class="px-2 py-1">الحالة</th>
                                     <th class="px-2 py-1">الإجراءات</th>
                                 </tr>
                             </thead>
@@ -41,6 +42,13 @@
                                         </td>
                                         <td class="px-2 py-2">{{ optional($item->user)->name ?? '—' }}</td>
                                         <td class="px-2 py-2">{{ $item->created_at->diffForHumans() }}</td>
+                                        <td class="px-2 py-2">
+                                            @if ($item->is_published)
+                                                <span class="text-green-600 font-semibold">Published</span>
+                                            @else
+                                                <span class="text-yellow-600 font-semibold">Pending</span>
+                                            @endif
+                                        </td>
                                         <td class="px-4 py-3 whitespace-nowrap">
                                             <div class="flex items-center gap-2">
 

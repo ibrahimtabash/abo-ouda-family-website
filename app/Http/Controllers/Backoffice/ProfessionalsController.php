@@ -3,16 +3,14 @@
 namespace App\Http\Controllers\Backoffice;
 
 use App\Http\Controllers\Controller;
+use App\Models\Professional;
 use Illuminate\Http\Request;
 
 class ProfessionalsController extends Controller
 {
     public function index()
     {
-        // Fetch professionals from the database (this is just a placeholder, replace with actual model and logic)
-        $professionals = [
-
-        ]; // Replace with actual data fetching logic
+        $professionals = Professional::latest()->paginate(10);
 
         return view('backoffice.professionals.index', compact('professionals'));
     }

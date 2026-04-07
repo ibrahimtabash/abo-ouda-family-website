@@ -14,9 +14,9 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden sm:-my-px sm:ms-10 sm:flex gap-4">
-                    <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                    <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                         {{ __('لوحة التحكم') }}
-                    </x-responsive-nav-link>
+                    </x-nav-link>
 
                     <x-nav-link :href="route('backoffice.news.index')" :active="request()->routeIs('backoffice.news.index')">
                         {{ __('الأخبار') }}

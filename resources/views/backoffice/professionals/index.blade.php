@@ -32,6 +32,7 @@
 
                                     <p>{{ $professional->user->email }}</p>
                                     <p>{{ $professional->phone_number }}</p>
+                                    <p>{{ $professional->created_at->diffForHumans() }}</p>
 
                                     <p
                                         class="text-xs bg-green-300 animate-pulse text-green-800 font-bold px-2 py-1 rounded w-fit">

@@ -37,6 +37,7 @@
                             @foreach ($news as $item)
                                 <div class="border border-gray-200 rounded-xl p-4 flex flex-col gap-3">
 
+
                                     {{-- العنوان والحالة --}}
                                     <div class="flex items-start justify-between gap-2">
                                         <a href="{{ route('backoffice.news.show', $item->id) }}"

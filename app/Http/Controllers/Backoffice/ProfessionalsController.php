@@ -10,7 +10,8 @@ class ProfessionalsController extends Controller
 {
     public function index()
     {
-        $professionals = Professional::latest()->paginate(10);
+        // $professionals = Professional::latest()->paginate(10);
+        $professionals = Professional::where('is_active', true)->latest()->get();
 
         return view('backoffice.professionals.index', compact('professionals'));
     }

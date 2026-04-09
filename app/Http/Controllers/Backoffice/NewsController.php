@@ -13,16 +13,26 @@ class NewsController extends Controller
     //     $this->middleware(['auth', 'role:admin']);
     // }
 
-    public function index()
+    public function index(Request $request)
     {
-        $news = News::with('user')->orderBy('created_at', 'desc')->paginate();
+        // $news = News::with('user')->orderBy('created_at', 'desc')->paginate();
+        // approved
+        $query = News::with('user')->latest();
+
+        // pending
+        if ($request->input('is_published') == 'false') {
+            $query->where('is_published', false);
+        }
+
+        $news = $query->orderBy('created_at', 'desc')->paginate(10);
+
         return view('backoffice.news.index', compact('news'));
     }
-    public function pending()
-    {
-        $news = News::where('is_published', false)->orderBy('created_at', 'desc')->get();
-        return view('backoffice.news.pending', compact('news'));
-    }
+    // public function pending()
+    // {
+    //     $news = News::where('is_published', false)->orderBy('created_at', 'desc')->get();
+    //     return view('backoffice.news.pending', compact('news'));
+    // }
 
     public function show($id)
     {

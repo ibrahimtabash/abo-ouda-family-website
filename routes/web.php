@@ -60,11 +60,7 @@ Route::post('/professional-request', [ProfessionalsController::class, 'store'])
     ->name('professional-request.store')
     ->middleware('auth');
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('professional-request', [ProfessionalRequestController::class, 'index'])->name('professional-request.index');
-    Route::post('professional-request/{id}/approve', [ProfessionalRequestController::class, 'approve'])->name('professional-request.approve');
-    Route::post('professional-request/{id}/reject', [ProfessionalRequestController::class, 'reject'])->name('professional-request.reject');
-});
+
 Route::get('family-tree', [FamilyTreeController::class, 'index'])->name('family-tree.index');
 Route::get('family-history', [FamilyHistoryController::class, 'index'])->name('family-history.index');
 Route::get('family-council', [FamilyCouncilController::class, 'index'])->name('family-council.index');

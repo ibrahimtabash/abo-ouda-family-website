@@ -13,10 +13,18 @@
             @endif
 
             <div class="my-4">
-                <a href="{{ route('backoffice.news.pending') }}"
-                    class="px-4 py-2 bg-black text-white rounded-md text-sm font-medium hover:bg-black/80 transition">
-                    {{ __('Pending News') }}
-                </a>
+                @if (request()->input('is_published') == 'true')
+                    <a href="{{ route('backoffice.news.index', ['is_published' => 'false']) }}"
+                        class="px-4 py-2 bg-black text-white rounded-md text-sm font-medium hover:bg-black/80 transition">
+                        {{ __('Pending News') }}
+                    </a>
+                @else
+                    <a href="{{ route('backoffice.news.index', ['is_published' => 'true']) }}"
+                        class="px-4 py-2 bg-black text-white rounded-md text-sm font-medium hover:bg-black/80 transition">
+                        {{ __('All News') }}
+                    </a>
+                @endif
+
             </div>
 
             <div class="bg-white shadow-sm sm:rounded-lg">
@@ -53,20 +61,46 @@
 
                                     {{-- الأزرار --}}
                                     <div class="flex gap-2 pt-1">
-                                        <a href="{{ route('backoffice.news.show', $item->id) }}"
-                                            class="flex-1 text-center bg-blue-700 hover:bg-blue-900 text-white text-sm font-medium px-3 py-2 rounded-lg transition">
-                                            ✎ عرض / تعديل
-                                        </a>
-                                        <form action="{{ route('backoffice.news.destroy', $item->id) }}" method="POST"
-                                            class="flex-1"
-                                            onsubmit="return confirm('Are you sure you want to delete this news?');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit"
-                                                class="w-full bg-red-700 hover:bg-red-900 text-white text-sm font-medium px-3 py-2 rounded-lg transition">
-                                                ✕ حذف
-                                            </button>
-                                        </form>
+                                        @if (request()->input('is_published') == 'true')
+                                            <a href="{{ route('backoffice.news.show', $item->id) }}"
+                                                class="flex-1 text-center bg-blue-700 hover:bg-blue-900 text-white text-sm font-medium px-3 py-2 rounded-lg transition">
+                                                ✎ عرض / تعديل
+                                            </a>
+                                            <form action="{{ route('backoffice.news.destroy', $item->id) }}"
+                                                method="POST" class="flex-1"
+                                                onsubmit="return confirm('Are you sure you want to delete this news?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="w-full bg-red-700 hover:bg-red-900 text-white text-sm font-medium px-3 py-2 rounded-lg transition">
+                                                    ✕ حذف
+                                                </button>
+                                            </form>
+                                        @else
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="flex items-center gap-2">
+
+                                                    <form action="{{ route('backoffice.news.publish', $item->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        <button
+                                                            class="inline-flex items-center gap-1 bg-green-700 hover:bg-green-900 text-white text-sm font-medium px-4 py-2 rounded-lg shadow-sm transition">
+                                                            ✓ قبول
+                                                        </button>
+                                                    </form>
+
+                                                    <form action="{{ route('backoffice.news.reject', $item->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        <button
+                                                            class="inline-flex items-center gap-1 bg-red-700 hover:bg-red-900 text-white text-sm font-medium px-4 py-2 rounded-lg shadow-sm transition">
+                                                            ✕ رفض
+                                                        </button>
+                                                    </form>
+
+                                                </div>
+                                            </td>
+                                        @endif
                                     </div>
 
                                 </div>
@@ -110,22 +144,49 @@
                                                 @endif
                                             </td>
                                             <td class="px-3 py-3 whitespace-nowrap">
-                                                <div class="flex items-center gap-2">
-                                                    <a href="{{ route('backoffice.news.show', $item->id) }}"
-                                                        class="inline-flex items-center gap-1 bg-blue-700 hover:bg-blue-900 text-white text-sm font-medium px-4 py-2 rounded-lg transition">
-                                                        ✎ عرض / تعديل
-                                                    </a>
-                                                    <form action="{{ route('backoffice.news.destroy', $item->id) }}"
-                                                        method="POST"
-                                                        onsubmit="return confirm('Are you sure you want to delete this news?');">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit"
-                                                            class="inline-flex items-center gap-1 bg-red-700 hover:bg-red-900 text-white text-sm font-medium px-4 py-2 rounded-lg shadow-sm transition">
-                                                            ✕ حذف
-                                                        </button>
-                                                    </form>
-                                                </div>
+                                                @if (request()->input('is_published') == 'true')
+                                                    <div class="flex items-center gap-2">
+                                                        <a href="{{ route('backoffice.news.show', $item->id) }}"
+                                                            class="inline-flex items-center gap-1 bg-blue-700 hover:bg-blue-900 text-white text-sm font-medium px-4 py-2 rounded-lg transition">
+                                                            ✎ عرض / تعديل
+                                                        </a>
+                                                        <form
+                                                            action="{{ route('backoffice.news.destroy', $item->id) }}"
+                                                            method="POST"
+                                                            onsubmit="return confirm('Are you sure you want to delete this news?');">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                class="inline-flex items-center gap-1 bg-red-700 hover:bg-red-900 text-white text-sm font-medium px-4 py-2 rounded-lg shadow-sm transition">
+                                                                ✕ حذف
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                @else
+                                                    <div class="flex items-center gap-2">
+
+                                                        <form
+                                                            action="{{ route('backoffice.news.publish', $item->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            <button
+                                                                class="inline-flex items-center gap-1 bg-green-700 hover:bg-green-900 text-white text-sm font-medium px-4 py-2 rounded-lg shadow-sm transition">
+                                                                ✓ قبول
+                                                            </button>
+                                                        </form>
+
+                                                        <form action="{{ route('backoffice.news.reject', $item->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            <button
+                                                                class="inline-flex items-center gap-1 bg-red-700 hover:bg-red-900 text-white text-sm font-medium px-4 py-2 rounded-lg shadow-sm transition">
+                                                                ✕ رفض
+                                                            </button>
+                                                        </form>
+
+                                                    </div>
+                                                @endif
+
                                             </td>
                                         </tr>
                                     @endforeach

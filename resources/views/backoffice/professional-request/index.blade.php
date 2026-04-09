@@ -9,16 +9,11 @@
                 <div class="mb-4 text-green-600">{{ session('success') }}</div>
             @endif
 
-            <div class="my-4 flex gap-2 items-center">
+            <div class="my-4">
 
                 <a href="{{ route('professional-request.create') }}"
                     class="px-4 py-2 bg-black text-primary-foreground rounded-md text-sm font-medium hover:bg-black/80 ">
                     {{ __('اضافة مهني جديد') }}</a>
-
-
-                <a href="{{ route('backoffice.professionals.index') }}"
-                    class="px-4 py-2 bg-black text-primary-foreground rounded-md text-sm font-medium hover:bg-black/80 ">
-                    {{ __('جميع المهنيين') }}</a>
             </div>
 
             {{-- GRID --}}

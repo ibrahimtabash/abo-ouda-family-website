@@ -25,7 +25,7 @@
                     <x-nav-link :href="route('backoffice.users.index')" :active="request()->routeIs('backoffice.users.index')">
                         {{ __('المستخدمين') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('professional-request.index')" :active="request()->routeIs('professional-request.index')">
+                    <x-nav-link :href="route('backoffice.professionals.index')" :active="request()->routeIs('backoffice.professionals.index')">
                         {{ __('دليل المهنيين') }}
                     </x-nav-link>
 
@@ -114,7 +114,7 @@
                 <x-responsive-nav-link :href="route('backoffice.users.index')" :active="request()->routeIs('backoffice.users.index')">
                     {{ __('المستخدمين') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('professional-request.index')" :active="request()->routeIs('professional-request.index')">
+                <x-responsive-nav-link :href="route('backoffice.professionals.index')" :active="request()->routeIs('backoffice.professionals.index')">
                     {{ __('دليل المهنيين') }}
                 </x-responsive-nav-link>
 

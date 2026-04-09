@@ -11,74 +11,44 @@
 
             <div class="my-4">
 
-                <a href="{{ route('professional-request.create') }}"
+                <a href="{{ route('professional-request.index') }}"
                     class="px-4 py-2 bg-black text-primary-foreground rounded-md text-sm font-medium hover:bg-black/80 ">
                     {{ __('عرض الطلبات') }}</a>
+
             </div>
 
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     @if ($professionals->isEmpty())
-                        <p>{{ __('No users found.') }}</p>
+                        <p>{{ __('No professionals found.') }}</p>
                     @else
-                        {{-- Desktop Table --}}
-                        {{-- <div class="hidden md:block">
-                            <table class="w-full table-auto">
-                                <thead>
-                                    <tr class="text-right">
-                                        <th class="px-2 py-1">اسم المستخدم</th>
-                                        <th class="px-2 py-1">المهنة</th>
-                                        <th class="px-2 py-1">تاريخ الإضافة</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($professionals as $professional)
-                                        <tr class="border-t">
-                                            <td class="px-2 py-2">
-                                                {{ $professional->user->name }}
-                                            </td>
-                                            <td class="px-2 py-2">
-                                                {{ $professional->profession->name ?? '-' }}
-                                            </td>
-                                            <td class="px-2 py-2">
-                                                {{ $professional->created_at->diffForHumans() }}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div> --}}
-
-                        {{-- Mobile Cards --}}
-                        {{-- <div class="md:hidden space-y-4">
-                            @foreach ($professionals as $professional)
-                                <div class="bg-gray-50 p-4 rounded-lg shadow">
-                                    <p><span class="font-bold">الاسم:</span> {{ $professional->user->name }}</p>
-                                    <p><span class="font-bold">المهنة:</span>
-                                        {{ $professional->profession->name ?? '-' }}</p>
-                                    <p><span class="font-bold">التاريخ:</span>
-                                        {{ $professional->created_at->diffForHumans() }}</p>
-                                </div>
-                            @endforeach
-                        </div> --}}
                         <table class="w-full table-auto ">
                             <thead>
                                 <tr class="text-right px-2 py-1">
                                     <th class="px-2 py-1">اسم المستخدم</th>
                                     <th class="px-2 py-1">البريد الإلكتروني</th>
-                                    <th class="px-2 py-1">الدور</th>
+                                    <th class="px-2 py-1">رقم الجوال</th>
+                                    <th class="px-2 py-1">تاريخ التسجيل</th>
+                                    <th class="px-2 py-1">الإجراءات</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($professionals as $professional)
                                     <tr class="border-t">
                                         <td class="px-2 py-2">
-                                            <a href="{{ route('backoffice.users.show', $user->id) }}"
-                                                class="text-blue-600">{{ $professional->user()->name }}</a>
+                                            <a href="{{ route('backoffice.users.show', $professional->id) }}"
+                                                class="text-blue-600">{{ $professional->user->name }}</a>
                                         </td>
-                                        <td class="px-2 py-2">{{ $professional->profession_id }}</td>
+                                        <td class="px-2 py-2">{{ $professional->user->email }}</td>
+                                        <td class="px-2 py-2">{{ $professional->phone_number }}</td>
 
                                         <td class="px-2 py-2">{{ $professional->created_at->diffForHumans() }}</td>
+                                        <td class="text-xs text-muted">
+                                            <p
+                                                class="bg-green-400 animate-pulse text-green-700 font-bold px-2 py-1 rounded w-fit">
+                                                تحت
+                                                الصيانة</p>
+                                        </td>
 
                                     </tr>
                                 @endforeach

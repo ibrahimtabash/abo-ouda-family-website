@@ -15,7 +15,7 @@
                     @endphp
                     <p class="mb-4">Welcome to the backoffice. Use the links below to manage content.</p>
                     <div class="flex gap-3">
-                        <a href="{{ route('backoffice.news.pending') }}"
+                        <a href="{{ route('backoffice.news.index', ['is_published' => 'false']) }}"
                             class="inline-block bg-blue-600 text-white px-4 py-2 rounded">Pending News
                             ({{ $pending }})</a>
 

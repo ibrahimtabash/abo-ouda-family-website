@@ -52,7 +52,7 @@ class NewsController extends Controller
         $news->is_published = true;
         $news->save();
 
-        return redirect()->route('backoffice.news.pending')->with('success', 'News published.');
+        return redirect()->route('backoffice.news.index', ['is_published'=> 'true'])->with('success', 'News published.');
     }
 
     public function reject(Request $request, $id)
@@ -62,7 +62,7 @@ class NewsController extends Controller
         $news->is_published = false;
         $news->save();
 
-        return redirect()->route('backoffice.news.pending')->with('success', 'News rejected.');
+        return redirect()->route('backoffice.news.index', ['is_published'=> 'false'])->with('success', 'News rejected.');
     }
 
 

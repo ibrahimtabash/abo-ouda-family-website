@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backoffice\FamilyMemberController;
 use App\Http\Controllers\Backoffice\ProfessionalsController as BackofficeProfessionalsController;
 use App\Http\Controllers\ProfessionalRequestController;
 use App\Http\Controllers\ProfessionalsController;
@@ -11,7 +12,7 @@ Route::get('admin/dashboard', function () {
 })->middleware(['auth', 'role:admin'])->name('admin.dashboard');
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
-    Route::resource('family-members', \App\Http\Controllers\backoffice\FamilyMemberController::class);
+    Route::resource('family-members', FamilyMemberController::class);
     // Route::get('news/pending', [\App\Http\Controllers\Backoffice\NewsController::class, 'pending'])->name('backoffice.news.pending');
     Route::get('news', [\App\Http\Controllers\Backoffice\NewsController::class, 'index'])->name('backoffice.news.index');
     Route::get('news/{id}', [\App\Http\Controllers\Backoffice\NewsController::class, 'show'])->name('backoffice.news.show');

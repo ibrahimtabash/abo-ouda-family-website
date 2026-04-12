@@ -1,34 +1,3 @@
-@php
-    $tree = [
-        'id' => 1,
-        'name' => 'أبو عودة',
-        'children' => [
-            [
-                'id' => 2,
-                'name' => 'فرع أحمد',
-                'children' => [
-                    ['id' => 5, 'name' => 'محمد', 'children' => []],
-                    ['id' => 6, 'name' => 'علي', 'children' => []],
-                ],
-            ],
-            [
-                'id' => 3,
-                'name' => 'فرع خالد',
-                'children' => [['id' => 7, 'name' => 'يوسف', 'children' => []]],
-            ],
-            [
-                'id' => 4,
-                'name' => 'فرع خالد',
-                'children' => [
-                    ['id' => 7, 'name' => 'يوسف', 'children' => []],
-                    ['id' => 9, 'name' => 'جمال', 'children' => []],
-                    ['id' => 9, 'name' => 'بلال', 'children' => []],
-                ],
-            ],
-        ],
-    ];
-@endphp
-
 <x-layout>
     <div x-data="{ search: '' }" class="py-12">
 
@@ -39,7 +8,7 @@
             </h1>
 
             <p class="text-muted-foreground mb-8">
-                استكشف أفرع وأجيال عائلة أبو عودة
+                استكشف أفرع وأجيال العائلة
             </p>
 
             {{-- SEARCH --}}
@@ -51,15 +20,20 @@
             {{-- TREE --}}
             <div class="glass-card p-6">
 
-                @include('family-tree.node', [
-                    'node' => $tree,
-                    'level' => 0,
-                ])
+                @if ($tree)
+                    @include('family-tree.node', [
+                        'node' => $tree,
+                        'level' => 0,
+                    ])
+                @else
+                    <p class="text-muted-foreground">
+                        لا يوجد بيانات حتى الآن
+                    </p>
+                @endif
 
             </div>
 
         </div>
 
     </div>
-    {{-- {{ view()->exists('components.family-tree.node') ? 'YES' : 'NO' }} --}}
 </x-layout>

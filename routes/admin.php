@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\backoffice\FamilyMemberController;
+use App\Http\Controllers\Backoffice\FamilyMemberController;
 use App\Http\Controllers\Backoffice\ProfessionalsController as BackofficeProfessionalsController;
 use App\Http\Controllers\ProfessionalRequestController;
 use App\Http\Controllers\ProfessionalsController;

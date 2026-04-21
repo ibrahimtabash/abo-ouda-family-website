@@ -188,8 +188,8 @@
                 @foreach ($newsData as $post)
                     <div class="glass-card overflow-hidden">
 
-                        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac"
-                            class="h-48 w-full object-cover">
+                        <img src="{{ $post->image ? asset('storage/' . $post->image) : asset('assets/images/default-news.png') }}"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
 
                         <div class="p-5">
                             <p class="text-xs text-muted-foreground mb-2">

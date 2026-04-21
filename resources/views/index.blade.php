@@ -186,10 +186,12 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
                 @foreach ($newsData as $post)
-                    <div class="glass-card overflow-hidden">
+                    <div class="glass-card overflow-hidden group">
 
-                        <img src="{{ $post->image ? asset('storage/' . $post->image) : asset('assets/images/default-news.png') }}"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="h-48 overflow-hidden">
+                            <img src="{{ $post->image ? asset('storage/' . $post->image) : asset('assets/images/default-news.png') }}"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
 
                         <div class="p-5">
                             <p class="text-xs text-muted-foreground mb-2">
@@ -201,12 +203,13 @@
                             </h3>
 
                             <p class="text-sm text-muted-foreground line-clamp-3 min-h-[3.5rem]">
-                                {{ Str::words($post->content, 15, '...') }} <a href="{{ route('news.show', $post) }}"
-                                    class="text-primary text-sm font-medium hover:underline">
-                                    قراءة المزيد
-                                </a>
+                                {{ Str::words($post->content, 15, '...') }}
                             </p>
 
+                            <a href="{{ route('news.show', $post) }}"
+                                class="inline-block mt-3 text-primary text-sm font-medium hover:underline">
+                                قراءة المزيد
+                            </a>
                         </div>
 
                     </div>

@@ -29,6 +29,11 @@
                         {{ __('دليل المهنيين') }}
                     </x-nav-link>
 
+
+                    <x-nav-link :href="route('company-requests.index')" :active="request()->routeIs('company-requests.index')">
+                        {{ __('طلبات الشركات') }}
+                    </x-nav-link>
+
                     <x-nav-link :href="route('professions.index')" :active="request()->routeIs('professions.index')">
                         {{ __('ادارة المهن') }}
                     </x-nav-link>
@@ -124,6 +129,11 @@
                 <x-responsive-nav-link :href="route('professions.index')" :active="request()->routeIs('professions.index')">
                     {{ __('ادارة المهن') }}
                 </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('company-requests.index')" :active="request()->routeIs('company-requests.index')">
+                    {{ __('طلبات الشركات') }}
+                </x-responsive-nav-link>
+
                 <x-responsive-nav-link :href="route('family-members.index')" :active="request()->routeIs('family-members.index')">
                     {{ __('ادارة شجرة العائلة') }}
                 </x-responsive-nav-link>

@@ -43,8 +43,8 @@
                     <div class="glass-card overflow-hidden cursor-pointer group flex flex-col h-full">
 
                         <div class="h-48 overflow-hidden">
-                            <img src="https://picsum.photos/400/300?random=5"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                            <img src="{{ $post->image ? asset('storage/' . $post->image) : asset('assets/images/default-news.png') }}"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                         </div>
 
                         <div class="p-5 flex flex-col flex-1">

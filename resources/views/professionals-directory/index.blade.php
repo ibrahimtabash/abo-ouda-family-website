@@ -13,13 +13,14 @@
                         تواصل مع أبناء العائلة من أصحاب المهن والتخصصات
                     </p>
                 </div>
+                {{-- Responsive CREATE BUTTON --}}
                 <div>
-                    {{-- Responsive CREATE BUTTON --}}
                     <a href="{{ route('professional-request.create') }}"
                         class="px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:bg-primary/80 ">
                         طلب إضافة مهني
                     </a>
                 </div>
+
             </div>
 
             @php
@@ -84,4 +85,5 @@
 
         </div>
     </div>
+
 </x-layout>

@@ -12,6 +12,8 @@
                     @php
                         $pending = \App\Models\News::where('is_published', false)->count();
                         $pendingProf = \App\Models\ProfessionalRequest::where('status', 'pending')->count();
+                        $pendingCompanies = \App\Models\CompanyRequest::where('status', 'pending')->count();
+
                     @endphp
                     <p class="mb-4">Welcome to the backoffice. Use the links below to manage content.</p>
                     <div class="flex gap-3">
@@ -22,6 +24,11 @@
                         <a href="{{ route('professional-request.index') }}"
                             class="inline-block bg-yellow-600 text-white px-4 py-2 rounded">Professional Requests
                             ({{ $pendingProf }})</a>
+
+                        <a href="{{ route('company-requests.index') }}"
+                            class="inline-block bg-green-600 text-white px-4 py-2 rounded">
+                            Company Requests ({{ $pendingCompanies }})
+                        </a>
                     </div>
                 </div>
             </div>

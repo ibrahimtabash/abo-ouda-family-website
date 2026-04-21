@@ -20,8 +20,9 @@
 
             {{-- NEWS DETAILS --}}
             <div class="glass-card p-6">
-                <div class="h-64 overflow-hidden mb-4">
-                    <img src="https://picsum.photos/600/400?random=5" class="w-full h-full object-cover" />
+                <div class="h-64 w-full bg-gray-100 flex items-center justify-center overflow-hidden">
+                    <img src="{{ $news->image ? asset('storage/' . $news->image) : asset('assets/images/default-news.png') }}"
+                        class="max-h-full max-w-full object-contain">
                 </div>
 
                 <p class="text-xs text-muted-foreground mb-2">

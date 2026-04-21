@@ -56,49 +56,6 @@
                     إرسال الطلب
                 </button>
             </form>
-
-
-            {{-- FORM --}}
-            {{-- <form action="{{ route('professionals.store') }}" method="POST" class="space-y-6">
-                @csrf
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-foreground">الاسم الكامل</label>
-                        <input type="text" name="name" id="name" required
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
-                    </div>
-
-                    <div>
-                        <label for="profession" class="block text-sm font-medium text-foreground">المهنة</label>
-                        <input type="text" name="profession" id="profession" required
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
-                    </div>
-
-                    <div>
-                        <label for="category" class="block text-sm font-medium text-foreground">التصنيف</label>
-                        <select name="category" id="category" required
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
-                            <option value="">اختر التصنيف</option>
-                            <option value="doctor">طبيب</option>
-                            <option value="engineer">مهندس</option>
-                            <option value="lawyer">محامي</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label for="location" class="block text-sm font-medium text-foreground">الموقع</label>
-                        <input type="text" name="location" id="location"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
-                    </div>
-
-                    <div>
-                        <label for="contact" class="block text-sm font-medium text-foreground">معلومات الاتصال</label>
-                        <input type="text" name="contact" id="contact"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
-                    </div>
-
-                </div>
-            </form> --}}
         </div>
     </div>
 </x-layout>

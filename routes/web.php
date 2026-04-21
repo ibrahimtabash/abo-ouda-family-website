@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BusinessesController;
+use App\Http\Controllers\CompanyRequestController;
 use App\Http\Controllers\FamilyCouncilController;
 use App\Http\Controllers\FamilyHistoryController;
 use App\Http\Controllers\FamilyTreeController;
@@ -22,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', HomePageController::class)->name('home');
 
 
-Route::middleware('auth')->group(function() {
+Route::middleware('auth')->group(function () {
 
     Route::middleware('role:admin,editor,member')->group(function () {
         // Routes accessible to all roles
@@ -54,6 +55,9 @@ Route::put('professionals-directory/{id}', [ProfessionalsController::class, 'upd
 Route::delete('professionals-directory/{id}', [ProfessionalsController::class, 'destroy'])->name('professionals.destroy');
 
 
+Route::post('company-requests', [CompanyRequestController::class, 'store'])
+    ->middleware('auth')
+    ->name('company-requests.store');
 
 Route::get('professional-request/create', [ProfessionalsController::class, 'create'])->name('professional-request.create');
 Route::post('/professional-request', [ProfessionalsController::class, 'store'])
@@ -75,5 +79,5 @@ Route::middleware('auth')->group(function () {
 });
 
 
-require __DIR__.'/auth.php';
-require __DIR__.'/admin.php';
+require __DIR__ . '/auth.php';
+require __DIR__ . '/admin.php';
